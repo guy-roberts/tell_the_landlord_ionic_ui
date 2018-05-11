@@ -1,0 +1,8 @@
+{
+  "name": "tell_the_landlord_ionic_ui",
+  "app_id": "811650f2",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

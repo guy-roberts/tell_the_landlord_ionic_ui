@@ -1,17 +1,28 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>Tell The Landlord</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
+  <h2>Start here</h2>
   <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
+    First tell us the name of your housing association or landlord
   </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+
+  <ion-list>
+    <form novalidate (ngSubmit)="submitLandlord()" [formGroup]="landlordForm">
+
+      <ion-item>
+        <ion-label floating>Landlord's name<span class="required">*</span></ion-label>
+        <ion-textarea type="text" [(ngModel)]="landlordData.landlordsName" formControlName="landlordsName" [class.error1]="!landlordForm.controls.landlordsName.valid && landlordForm.controls.landlordsName.dirty"></ion-textarea>
+      </ion-item>
+
+      <button type="submit" ion-button block color="primary" [disabled]="landlordForm.invalid">Next step</button>
+
+    </form>
+  </ion-list>
+
 </ion-content>
+
+

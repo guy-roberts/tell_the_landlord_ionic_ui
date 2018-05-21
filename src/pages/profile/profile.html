@@ -1,0 +1,156 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      About you
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <form novalidate (ngSubmit)="submitProfile()" [formGroup]="profileform">
+      <ion-item>
+        <ion-label floating>First Name<span class="required">*</span></ion-label>
+        <ion-input type="text" [(ngModel)]="profileData.first_name" formControlName="first_name" [class.error1]="!profileform.controls.first_name.valid && profileform.controls.first_name.dirty"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="( profileform.get('first_name').hasError('minlength') || profileform.get('first_name').hasError('maxlength') ||profileform.get('first_name').hasError('pattern') ||profileform.get('first_name').hasError('required') ) && profileform.get('first_name').touched">
+        <div class="error" *ngIf="profileform.get('first_name').hasError('required') && profileform.get('first_name').touched">
+          Please input your first name
+        </div>
+        <div class="error" *ngIf="profileform.get('first_name').hasError('minlength') && profileform.get('first_name').touched">
+          Minimum 2 characters
+        </div>
+        <div class="error" *ngIf="profileform.get('first_name').hasError('pattern') && profileform.get('first_name').touched">
+          Just use alphabet characters
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Last Name<span class="required">*</span></ion-label>
+        <ion-input type="text" [(ngModel)]="profileData.last_name" formControlName="last_name" [class.error1]="!profileform.controls.last_name.valid && profileform.controls.last_name.dirty"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="( profileform.get('last_name').hasError('minlength') || profileform.get('last_name').hasError('maxlength') ||profileform.get('last_name').hasError('pattern') ||profileform.get('last_name').hasError('required') ) && profileform.get('last_name').touched">
+        <div class="error" *ngIf="profileform.get('last_name').hasError('required') && profileform.get('last_name').touched">
+          Please input your last name
+        </div>
+        <div class="error" *ngIf="profileform.get('last_name').hasError('minlength') && profileform.get('last_name').touched">
+          Minimum 2 characters
+        </div>
+        <div class="error" *ngIf="profileform.get('last_name').hasError('pattern') && profileform.get('last_name').touched">
+          Just use alphabet characters
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Address 1<span class="required">*</span></ion-label>
+        <ion-input type="text" [(ngModel)]="profileData.address1" formControlName="address1" [class.error1]="!profileform.controls.address1.valid && profileform.controls.address1.dirty"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="( profileform.get('address1').hasError('minlength') || profileform.get('address1').hasError('maxlength') ||profileform.get('address1').hasError('pattern') ||profileform.get('address1').hasError('required') ) && profileform.get('address1').touched">
+        <div class="error" *ngIf="profileform.get('address1').hasError('required') && profileform.get('address1').touched">
+          First line of address
+        </div>
+        <div class="error" *ngIf="profileform.get('address1').hasError('minlength') && profileform.get('address1').touched">
+          Minimum 5 characters
+        </div>
+        <div class="error" *ngIf="profileform.get('address1').hasError('pattern') && profileform.get('address1').touched">
+          Just use alphabet characters
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Address 2</ion-label>
+        <ion-input type="text" [(ngModel)]="profileData.address2" formControlName="address2" [class.error1]="!profileform.controls.address2.valid && profileform.controls.address2.dirty"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="( profileform.get('address2').hasError('minlength') || profileform.get('address2').hasError('maxlength') ||profileform.get('address2').hasError('pattern') ||profileform.get('address2').hasError('required') ) && profileform.get('address2').touched">
+        <div class="error" *ngIf="profileform.get('address2').hasError('required') && profileform.get('address2').touched">
+         Second line of address
+        </div>
+        <div class="error" *ngIf="profileform.get('address2').hasError('minlength') && profileform.get('address2').touched">
+          Minimum 5 characters
+        </div>
+        <div class="error" *ngIf="profileform.get('address2').hasError('pattern') && profileform.get('address2').touched">
+          Just use alphabet characters
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Address 3</ion-label>
+        <ion-input type="text" [(ngModel)]="profileData.address3" formControlName="address3" [class.error1]="!profileform.controls.address3.valid && profileform.controls.address1.dirty"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="( profileform.get('address3').hasError('minlength') || profileform.get('address3').hasError('maxlength') ||profileform.get('address3').hasError('pattern') ||profileform.get('address3').hasError('required') ) && profileform.get('address3').touched">
+        <div class="error" *ngIf="profileform.get('address3').hasError('required') && profileform.get('address3').touched">
+          Third line of address
+        </div>
+        <div class="error" *ngIf="profileform.get('address3').hasError('minlength') && profileform.get('address3').touched">
+          Minimum 5 characters
+        </div>
+        <div class="error" *ngIf="profileform.get('address3').hasError('pattern') && profileform.get('address3').touched">
+          Just use alphabet characters
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Postcode<span class="required">*</span></ion-label>
+        <ion-input type="text" [(ngModel)]="profileData.postcode" formControlName="postcode" [class.error1]="!profileform.controls.postcode.valid && profileform.controls.postcode.dirty"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="( profileform.get('postcode').hasError('minlength') || profileform.get('postcode').hasError('maxlength') ||profileform.get('postcode').hasError('pattern') ||profileform.get('postcode').hasError('required') ) && profileform.get('postcode').touched">
+        <div class="error" *ngIf="profileform.get('postcode').hasError('required') && profileform.get('postcode').touched">
+          Postcode
+        </div>
+        <div class="error" *ngIf="profileform.get('postcode').hasError('minlength') && profileform.get('postcode').touched">
+          Minimum 5 characters
+        </div>
+        <div class="error" *ngIf="profileform.get('postcode').hasError('pattern') && profileform.get('postcode').touched">
+          Just use alphabet characters
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Email</ion-label>
+        <ion-input type="text" [(ngModel)]="profileData.email" formControlName="email" [class.error1]="!profileform.controls.email.valid && profileform.controls.email.dirty"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="( profileform.get('email').hasError('minlength') || profileform.get('email').hasError('pattern') ||profileform.get('email').hasError('required') ) && profileform.get('email').touched">
+        <div class="error" *ngIf="profileform.get('email').hasError('required') && profileform.get('email').touched">
+          Your email
+        </div>
+        <div class="error" *ngIf="profileform.get('email').hasError('pattern') && profileform.get('email').touched">
+          Email address invalid
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Mobile phone<span class="required">*</span></ion-label>
+        <ion-input type="text" [(ngModel)]="profileData.mobile_phone" formControlName="mobile_phone" [class.error1]="!profileform.controls.mobile_phone.valid && profileform.controls.mobile_phone.dirty"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="( profileform.get('mobile_phone').hasError('minlength') || profileform.get('mobile_phone').hasError('maxlength') ||profileform.get('mobile_phone').hasError('pattern') ||profileform.get('mobile_phone').hasError('required') ) && profileform.get('mobile_phone').touched">
+        <div class="error" *ngIf="profileform.get('mobile_phone').hasError('required') && profileform.get('mobile_phone').touched">
+          Mobile no
+        </div>
+        <div class="error" *ngIf="profileform.get('mobile_phone').hasError('minlength') && profileform.get('mobile_phone').touched">
+          Minimum 9 characters
+        </div>
+        <div class="error" *ngIf="profileform.get('mobile_phone').hasError('pattern') && profileform.get('mobile_phone').touched">
+          Just use numbers
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Home phone</ion-label>
+        <ion-input type="text" [(ngModel)]="profileData.home_phone" formControlName="home_phone" [class.error1]="!profileform.controls.home_phone.valid && profileform.controls.home_phone.dirty"></ion-input>
+      </ion-item>
+      <ion-item no-lines *ngIf="( profileform.get('home_phone').hasError('minlength') || profileform.get('home_phone').hasError('maxlength') ||profileform.get('home_phone').hasError('pattern') ||profileform.get('home_phone').hasError('required') ) && profileform.get('home_phone').touched">
+        <div class="error" *ngIf="profileform.get('home_phone').hasError('required') && profileform.get('home_phone').touched">
+          Mobile no
+        </div>
+        <div class="error" *ngIf="profileform.get('home_phone').hasError('minlength') && profileform.get('home_phone').touched">
+          Minimum 9 characters
+        </div>
+        <div class="error" *ngIf="profileform.get('home_phone').hasError('pattern') && profileform.get('home_phone').touched">
+          Just use numbers
+        </div>
+      </ion-item>
+
+      <button type="submit" ion-button block color="primary" [disabled]="profileform.invalid">Next</button>
+    </form>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Report
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <form novalidate (ngSubmit)="submitReport()" [formGroup]="reportForm">
+      <ion-item>
+        <ion-label>Category<span class="required">*</span></ion-label>
+        <ion-select [(ngModel)]="reportData.category" formControlName="category" multiple="false">
+          <ion-option value="{{category.description}}" *ngFor="let category of reportCategories">{{category.description}}</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Description<span class="required">*</span></ion-label>
+        <ion-textarea type="text" [(ngModel)]="reportData.description" formControlName="description" [class.error1]="!reportForm.controls.description.valid && reportForm.controls.description.dirty"></ion-textarea>
+      </ion-item>
+      <ion-item no-lines *ngIf="( reportForm.get('description').hasError('minlength') || reportForm.get('description').hasError('maxlength') ||reportForm.get('description').hasError('pattern') ||reportForm.get('description').hasError('required') ) && reportForm.get('description').touched">
+        <div class="error" *ngIf="reportForm.get('description').hasError('required') && reportForm.get('description').touched">
+          Describe the problem
+        </div>
+        <div class="error" *ngIf="reportForm.get('description').hasError('minlength') && reportForm.get('description').touched">
+          Minimum 2 characters
+        </div>
+        <div class="error" *ngIf="reportForm.get('description').hasError('pattern') && reportForm.get('description').touched">
+          Just use alphabet characters
+        </div>
+      </ion-item>
+
+      <button type="submit" ion-button block color="primary" [disabled]="reportForm.invalid">Send</button>
+
+
+    </form>
+  </ion-list>
+</ion-content>

@@ -2,24 +2,16 @@ import { Report } from '../models/report';
 import { Profile } from '../models/profile';
 import { ReportCategory } from '../models/report_category';
 
-
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { JsonApiDatastoreConfig, JsonApiDatastore, DatastoreConfig } from 'angular2-jsonapi';
+import { JsonApiDatastoreConfig, JsonApiDatastore, DatastoreConfig, JsonApiQueryData} from 'angular2-jsonapi';
+import { Observable } from 'rxjs/Observable';
 
-const config: DatastoreConfig = {
-  /* TODO: put baseUrl in an environment variable */
-  baseUrl: 'http://some-housing-association.lvh.me:3000/',
-  models: {
-    report: Report,
-    profile: Profile,
-    report_category: ReportCategory
-  }
-}
+const urlTemplate = 'http://SUBDOMAIN.lvh.me:3000/';
 
-const config2: DatastoreConfig = {
+let config: DatastoreConfig = {
   /* TODO: put baseUrl in an environment variable */
-  baseUrl: 'http://woppa-homes.lvh.me:3000/',
+  baseUrl: urlTemplate,
   models: {
     report: Report,
     profile: Profile,
@@ -31,18 +23,22 @@ const config2: DatastoreConfig = {
 @JsonApiDatastoreConfig(config)
 export class Datastore extends JsonApiDatastore {
 
+  public connected: boolean;
+
   constructor(http: HttpClient) {
-    console.log('Datastore constructor called');
     super(http);
+    this.connected = false;
   }
 
-  recreate() {
-    console.log('Would recreate the datastore');
+  setBaseUrl(subdomain: string): Observable<any> {
+    let newUrl = urlTemplate.replace('SUBDOMAIN', subdomain);
+    this.connected = false;
+    this.datastoreConfig.baseUrl = newUrl;
+    return this.confirmConnection();
   }
 
-  // Attempt to override the URL
-  buildURL() {
-    console.log("buildURL called");
-    return("http://bbc.co.uk");
+  confirmConnection() {
+    console.log('confirmConnection called');
+    return this.findAll(ReportCategory);
   }
 }

@@ -10,6 +10,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import { ReportPage } from '../pages/report/report';
 import { ProfilePage } from '../pages/profile/profile';
+import { Landlord } from '../pages/landlord/landlord';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -20,6 +21,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { AuthenticationService, UserService, ProfileService } from '../services/index';
 import { Datastore } from "../services/datastore";
+import { ChangeDetectorRef } from '@angular/core';
 
 
 @NgModule({
@@ -31,7 +33,8 @@ import { Datastore } from "../services/datastore";
     TabsPage,
     LoginPage,
     ReportPage,
-    ProfilePage
+    ProfilePage,
+    Landlord
   ],
   imports: [
     BrowserModule,
@@ -58,7 +61,8 @@ import { Datastore } from "../services/datastore";
     AuthenticationService,
     UserService,
     ProfileService,
-    Datastore
+    Datastore,
+    Landlord
   ]
 })
 export class AppModule {}

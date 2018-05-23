@@ -1,10 +1,8 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { NavController } from 'ionic-angular';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {ReportCategory} from "../../models/report_category";
-import {Datastore} from "../../services/datastore";
-import {Storage} from "@ionic/storage";
-import {ProfileService} from "../../services/profile.service";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Datastore } from "../../services/datastore";
+import { JsonApiQueryData } from "angular2-jsonapi";
 
 @Component({
   selector: 'page-home',
@@ -14,6 +12,7 @@ export class HomePage {
 
   landlordForm: FormGroup;
   landlordData = { "landlordsName": '' };
+  confirmedLandlordName = "";
 
   ngOnInit() {
     this.landlordForm = new FormGroup({
@@ -25,10 +24,15 @@ export class HomePage {
   }
 
   submitLandlord() {
-    console.log('Submit called' + this.landlordData);
-
-    // Change the datastore !
-    this.datastore.recreate();
+    this.datastore.setBaseUrl(this.landlordData.landlordsName).subscribe(
+      (any_result: JsonApiQueryData<any>) => {
+        this.confirmedLandlordName = this.landlordData.landlordsName;
+        console.log('success connecting to ' + this.landlordData.landlordsName);
+      },
+      () => {
+        this.confirmedLandlordName = '';
+        console.log('caught that there is no connection to ' + this.landlordData.landlordsName);
+      });
   }
 
 }

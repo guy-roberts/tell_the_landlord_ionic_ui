@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Profile } from '../../models/profile';
-import { Datastore } from '../../services/datastore';
-import { ReportPage } from '../report/report';
 import { Storage } from '@ionic/storage';
 import { ProfileService } from '../../services/profile.service';
 
@@ -16,7 +14,7 @@ export class ProfilePage {
   profileData = { 'first_name': '', 'last_name': '', 'address1': '', 'address2': '', 'address3': '', 'postcode': '',  'email': '', 'mobile_phone': '', 'home_phone': '', 'tenant_reference': '' };
   profileId: Profile;
 
-  constructor(public navCtrl: NavController, public datastore: Datastore, private storage: Storage, private profile_service: ProfileService) {
+  constructor(public navCtrl: NavController, private storage: Storage, private profile_service: ProfileService) {
 
   }
 

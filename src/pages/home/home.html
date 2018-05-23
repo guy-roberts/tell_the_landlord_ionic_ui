@@ -5,23 +5,30 @@
 </ion-header>
 
 <ion-content padding>
-  <h2>Start here</h2>
-  <p>
-    First tell us the name of your housing association or landlord
-  </p>
+  <div *ngIf="confirmedLandlordName != ''">
+    Confirmed name: {{confirmedLandlordName}}
+    <page-profile>Page Here</page-profile>
+  </div>
 
-  <ion-list>
-    <form novalidate (ngSubmit)="submitLandlord()" [formGroup]="landlordForm">
+  <div *ngIf="confirmedLandlordName === ''">
+    <h2>Start here</h2>
+    <p>
+      First tell us the name of your housing association or landlord
+    </p>
 
-      <ion-item>
-        <ion-label floating>Landlord's name<span class="required">*</span></ion-label>
-        <ion-textarea type="text" [(ngModel)]="landlordData.landlordsName" formControlName="landlordsName" [class.error1]="!landlordForm.controls.landlordsName.valid && landlordForm.controls.landlordsName.dirty"></ion-textarea>
-      </ion-item>
+    <ion-list>
+      <form novalidate (ngSubmit)="submitLandlord()" [formGroup]="landlordForm">
 
-      <button type="submit" ion-button block color="primary" [disabled]="landlordForm.invalid">Next step</button>
+        <ion-item>
+          <ion-label floating>Landlord's name<span class="required">*</span></ion-label>
+          <ion-input type="text" [(ngModel)]="landlordData.landlordsName" formControlName="landlordsName" [class.error1]="!landlordForm.controls.landlordsName.valid && landlordForm.controls.landlordsName.dirty"></ion-input>
+        </ion-item>
 
-    </form>
-  </ion-list>
+        <button type="submit" ion-button block color="primary" [disabled]="landlordForm.invalid">Next step</button>
+
+      </form>
+    </ion-list>
+  </div>
 
 </ion-content>
 

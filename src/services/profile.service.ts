@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Datastore } from "./datastore";
 import { Storage } from "@ionic/storage";
 import { Profile } from '../models/profile';
-import {ReportPage} from "../pages/report/report";
 
 
 /*
@@ -15,6 +14,8 @@ export class ProfileService {
 
   constructor(
     public datastore: Datastore, private storage: Storage) {
+
+    console.log('ProfileService is initialising');
   }
 
   // If there is a profile id local storage, then fetch it from the server

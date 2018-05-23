@@ -1,12 +1,3 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      About you
-    </ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content padding>
   <ion-list>
     <form novalidate (ngSubmit)="submitProfile()" [formGroup]="profileform">
       <ion-item>
@@ -153,4 +144,3 @@
       <button type="submit" ion-button block color="primary" [disabled]="profileform.invalid">Next</button>
     </form>
   </ion-list>
-</ion-content>
